@@ -1,0 +1,26 @@
+#install voson social media lab package to get youtube data
+library(vosonSML)
+
+#get google developer api key
+#go to https://console.developers.google.com/
+#Youtube video:https://www.youtube.com/watch?v=pP4zvduVAqo
+
+apikey <- "AIzaSyCvBkaPmvGg_vulZTTFN2kZypQDdA_ZR-E"
+
+key <- Authenticate("youtube", apikey)
+
+#collect data using youtube video ID
+video <- c('UkQW8Q8rcEg')
+
+ytdata <- Collect(key, video, writeToFile = FALSE)
+
+#str(ytdata)
+
+# Commented out the CSV types. 
+
+write.csv(ytdata, file='ukraindatadump-youtube.csv', row.names = FALSE)
+
+
+#write.csv(ytdata, file = '~/Desktop/yt3b.csv', row.names = F)
+str(ytdata)
+head(ytdata)
