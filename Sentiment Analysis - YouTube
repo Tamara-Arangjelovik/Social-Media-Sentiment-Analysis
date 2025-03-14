@@ -1,0 +1,27 @@
+# Sentiment analysis for Ukraine
+library(syuzhet)
+library(lubridate)
+library(ggplot2)
+library(scales)
+library(reshape2)
+library(dplyr)
+
+# Read file
+mf <- read.csv(file.choose(), header = T)
+str(mf)
+#tweets <- iconv(mf$text, to = 'utf-8-mac')
+comments <- iconv(mf$Comment, to = 'utf-8-mac')
+
+# Obtain sentiment scores
+s <- get_nrc_sentiment(comments)
+head(s)
+comments[1000]
+comments[]
+get_nrc_sentiment('like')
+
+# Bar plot
+barplot(colSums(s),
+        las = 2,
+        col = rainbow(10),
+        ylab = 'Count',
+        main = 'Youtube Sentiment Scores for Ukraine')
